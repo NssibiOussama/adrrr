@@ -1,0 +1,130 @@
+<main id="main" class="main">
+    <!-- Basic with Icons -->
+    <div class="col-xxl">
+        <div class="card mb-4">
+            <div class="card-header d-flex align-items-center justify-content-center">
+                <h5 class="mb-0">{{action}} Un Equipe </h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formEquipe" (ngSubmit)="onSubmit(imageInput)">
+                    <div class="row">
+                        <div class="col">
+                            <label for="largeSelect" class="form-label">Leader</label>
+                            <select id="largeSelect" name="leader_id" class="form-select form-select-lg"
+                                formControlName="leader_id"
+                                [ngClass]="{ 'is-invalid': isFormSubmitted && equipeControls['leader_id'].errors }">
+
+                                <option *ngFor="let user of listUser" [ngValue]="user.id">{{user.first_name+"
+                                    "+user.last_name}}</option>
+
+                            </select>
+                            <div *ngIf="isFormSubmitted && equipeControls['leader_id'].errors" class="invalid-feedback">
+                                <div *ngIf="equipeControls['leader_id'].errors['required']"> Vous devez renseigner ce
+                                    champ</div>
+                            </div>
+
+                        </div>
+                        <div class="col">
+
+                            <div class="row mb-3">
+                                <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nom</label>
+                                <div class="col-sm-10">
+                                    <div class="input-group input-group-merge">
+                                        <!-- <span id="basic-icon-default-fullname2" class="input-group-text"
+                          ><i class="bx bx-user"></i
+                            ></span> -->
+                                        <input name="team_name" type="text" class="form-control"
+                                            id="basic-icon-default-fullname" placeholder="Nom"
+                                            formControlName="team_name"
+                                            [ngClass]="{ 'is-invalid': isFormSubmitted && equipeControls['team_name'].errors }" />
+
+                                        <div *ngIf="isFormSubmitted && equipeControls['team_name'].errors"
+                                            class="invalid-feedback">
+                                            <div *ngIf="equipeControls['team_name'].errors['required']"> Vous devez
+                                                renseigner cechamp</div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="formFile" class="form-label">Choisir un Image</label>
+                        <input class="form-control" accept="image/*" type="file" id="formFile" #imageInput
+                            formControlName="team_image"
+                            [ngClass]="{ 'is-invalid': isFormSubmitted && equipeControls['team_image'].errors }" />
+                        <div *ngIf="isFormSubmitted && equipeControls['team_image'].errors" class="invalid-feedback">
+                            <div *ngIf="equipeControls['team_image'].errors['required']"> Vous devez renseigner ce champ
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card-header d-flex align-items-center justify-content-center">
+                        <div>
+                            <button style='margin-right:7px' class="btn btn-outline-warning mr-1">Annuler</button>
+                            <button  style='margin-right:7px' type="submit" *ngIf="!inEdit" class="btn btn-outline-primary" [disabled]="loading">
+                                <div *ngIf="loading" class="spinner-border text-success" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+
+                                {{!loading ? 'Enregistrer' : null}}
+                            </button>
+                            <button style='margin-right:7px' *ngIf="inEdit" (click)="updateEquipe(imageInput)" type="button"
+                                class="btn btn-outline-primary" [disabled]="loading">
+                                <div *ngIf="loading" class="spinner-border text-success" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+
+                                {{!loading ? 'Enregistrer' : null}}
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Bootstrap Table with Header - Dark -->
+    <div class="card">
+        <div class="card-header d-flex align-items-center justify-content-center">
+            <h5>Liste des Equipes</h5>
+        </div>
+
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Leader</th>
+                        <th>Image</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0" *ngFor="let equipe of listEquipe; let i=index ">
+                    <tr>
+                        <td>{{equipe.team_name}}</td>
+                        <td>{{equipe.last_name+" "+equipe.first_name}}</td>
+                        <td><img src={{equipe.team_image}} alt="Team Image" width="150" height="150">
+                        <td>
+                            <button style='margin-right:7px' [routerLink]="['/admin/equipes/edit',equipe.id]" class="btn btn-outline-primary"><i
+                                    class="bx bx-edit-alt me-1">Modifier</i> </button>
+                            <button style='margin-right:7px' (click)="delete(equipe.id)" class="btn btn-outline-danger"><i
+                                    class="bx bx-trash me-1">Supprimer</i> </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</main>

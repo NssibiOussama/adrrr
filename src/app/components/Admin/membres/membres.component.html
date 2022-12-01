@@ -1,0 +1,152 @@
+<main id="main" class="main">
+  <link rel="stylesheet">
+
+  <!-- Basic with Icons -->
+  <div class="col-xxl">
+    <div class="card mb-4">
+      <div class="card-header d-flex align-items-center justify-content-center">
+        <h5 class="mb-0">Modifier un membre </h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="formUsers" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Prénom</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <!-- <span id="basic-icon-default-fullname2" class="input-group-text"
+                    ><i class="bx bx-user"></i
+                  ></span> -->
+                  <input name="nom" type="text" class="form-control" id="basic-icon-default-fullname" placeholder="Nom"
+                    formControlName="last_name"
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && UserControls['last_name'].errors }" />
+
+                  <div *ngIf="isFormSubmitted && UserControls['last_name'].errors" class="invalid-feedback">
+                    <div *ngIf="UserControls['last_name'].errors['required']"> Vous devez renseigner ce champ</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nom</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <!-- <span id="basic-icon-default-fullname2" class="input-group-text"
+                    ><i class="bx bx-user"></i
+                  ></span> -->
+                  <input name="type" type="text" class="form-control" id="basic-icon-default-fullname"
+                    placeholder="Prénom" formControlName="first_name"
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && UserControls['first_name'].errors }" />
+
+                  <div *ngIf="isFormSubmitted && UserControls['first_name'].errors" class="invalid-feedback">
+                    <div *ngIf="UserControls['first_name'].errors['required']"> Vous devez renseigner ce champ</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Email</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <!-- <span id="basic-icon-default-fullname2" class="input-group-text"
+                    ><i class="bx bx-user"></i
+                  ></span> -->
+                  <input name="email" type="text" class="form-control" id="basic-icon-default-fullname"
+                    placeholder="email" formControlName="email"
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && UserControls['email'].errors }" />
+
+                  <div *ngIf="isFormSubmitted && UserControls['email'].errors" class="invalid-feedback">
+                    <div *ngIf="UserControls['email'].errors['required']"> Vous devez renseigner ce champ</div>
+                    <div *ngIf="UserControls['email'].errors['email']"> Adresse email invalide</div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Role</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <!-- <span id="basic-icon-default-fullname2" class="input-group-text"
+                    ><i class="bx bx-user"></i
+                  ></span> -->
+                  <!-- <input 
+                  name="role"
+                    type="text"
+                    class="form-control"
+                    id="basic-icon-default-fullname"
+                    placeholder="role"
+                    formControlName="role"
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && UserControls['role'].errors }"
+                  /> -->
+                  <select name="role" id="role" class="form-control" formControlName="role" 
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && UserControls['role'].errors }">
+                    <option value="admin" class="form-control" selected>admin</option>
+                    <option value="user" class="form-control">user</option>
+                  </select>
+
+                  <div *ngIf="isFormSubmitted && UserControls['role'].errors" class="invalid-feedback">
+                    <div *ngIf="UserControls['role'].errors['required']"> Vous devez renseigner ce champ</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <div class="card-header d-flex align-items-center justify-content-center">
+            <div>
+              <button (click)="onReset()" class="btn btn-outline-warning mr-1">Annuler</button>
+              <button  (click)="updateUser()" type="button"
+                class="btn btn-outline-primary">Modifier</button>
+
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Table with Header - Dark -->
+  <div class="card">
+    <div class="card-header d-flex align-items-center justify-content-center">
+      <h5>Liste des catégories des jeux</h5>
+    </div>
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th>Prénom</th>
+            <th>Nom</th>
+            <th>email</th>
+            <th>role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0" *ngFor="let user of users">
+          <tr>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.role}}</td>
+            <td>
+              <button class="btn btn-outline-primary" [routerLink]="['/admin/membres/edit',user.id]"><i
+                  class="bx bx-edit-alt me-1">Modifier</i> </button>
+              <button class="btn btn-outline-danger" (click)="deleteUser(user.userId)"><i
+                  class="bx bx-trash me-1">Supprimer</i> </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
+
+</main>

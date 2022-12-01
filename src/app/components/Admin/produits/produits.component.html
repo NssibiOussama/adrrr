@@ -1,0 +1,153 @@
+<main id="main" class="main">
+    <link rel="stylesheet">
+
+    <!-- Basic with Icons -->
+    <div class="col-xxl">
+        <div class="card mb-4">
+            <div class="card-header d-flex align-items-center justify-content-center">
+                <h5 class="mb-0">Modifier un produit </h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="formProducts" (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nom</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <!-- <span id="basic-icon-default-fullname2" class="input-group-text"
+                                  ><i class="bx bx-user"></i
+                                    ></span> -->
+                                    <input name="nom" type="text" class="form-control" id="basic-icon-default-fullname"
+                                        placeholder="Nom" formControlName="name"
+                                        [ngClass]="{ 'is-invalid': isFormSubmitted && productControls['name'].errors }" />
+
+                                    <div *ngIf="isFormSubmitted && productControls['name'].errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="productControls['name'].errors['required']"> Vous devez renseigner
+                                            ce
+                                            champ</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Description</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input name="description" type="text" class="form-control"
+                                        id="basic-icon-default-fullname" placeholder="Description"
+                                        formControlName="description"
+                                        [ngClass]="{ 'is-invalid': isFormSubmitted && productControls['description'].errors }" />
+
+                                    <div *ngIf="isFormSubmitted && productControls['description'].errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="productControls['description'].errors['required']"> Vous devez
+                                            renseigner ce champ</div>
+                                        <div *ngIf="productControls['description'].errors['minlength']">Description doit
+                                            contenir au moins 8 caractères</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Prix</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+                                    <input name="price" type="number" class="form-control"
+                                        id="basic-icon-default-fullname" placeholder="Prix" formControlName="price"
+                                        [ngClass]="{ 'is-invalid': isFormSubmitted && productControls['price'].errors }" />
+
+                                    <div *ngIf="isFormSubmitted && productControls['price'].errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="productControls['price'].errors['price']"> Vous devez renseigner ce
+                                            champ</div>
+                                        <div *ngIf="productControls['price'].errors['min']"> Prix ne peut pas être
+                                            négatif</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Quantité</label>
+                            <div class="col-sm-10">
+                                <div class="input-group input-group-merge">
+
+                                    <input name="quantity" type="number" class="form-control"
+                                        id="basic-icon-default-fullname" placeholder="Quantité"
+                                        formControlName="quantity"
+                                        [ngClass]="{ 'is-invalid': isFormSubmitted && productControls['quantity'].errors }" />
+
+                                    <div *ngIf="isFormSubmitted && productControls['quantity'].errors"
+                                        class="invalid-feedback">
+                                        <div *ngIf="productControls['quantity'].errors['required']"> Vous devez
+                                            renseigner ce
+                                            champ</div>
+                                        <div *ngIf="productControls['quantity'].errors['min']"> Quantité ne peut pas
+                                            être négative</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-header d-flex align-items-center justify-content-center">
+                        <div>
+                            <button (click)="onReset()" class="btn btn-outline-warning mr-1">Annuler</button>
+                            <button (click)="updateProduct()" type="button"
+                                class="btn btn-outline-primary">Modifier</button>
+
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap Table with Header - Dark -->
+    <div class="card">
+        <div class="card-header d-flex align-items-center justify-content-center">
+            <h5>Liste des produits</h5>
+        </div>
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Prix</th>
+                        <th>Quantité</th>
+                        <th>Propriétaire</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0" *ngFor="let product of products">
+                    <tr>
+                        <td>{{product.name}}</td>
+                        <td>{{product.description}}</td>
+                        <td>{{product.price}}</td>
+                        <td>{{product.quantity}}</td>
+                        <td><a [routerLink]="['/admin/membres/edit',product.user_id]">{{product.first_name+"
+                                "+product.last_name}}</a></td>
+                        <td>
+                            <button class="btn btn-outline-primary"
+                                [routerLink]="['/admin/produits/edit',product.id]"><i
+                                    class="bx bx-edit-alt me-1">Modifier</i> </button>
+                            <button class="btn btn-outline-danger" (click)="deleteProduct(product.id)"><i
+                                    class="bx bx-trash me-1">Supprimer</i> </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+</main>

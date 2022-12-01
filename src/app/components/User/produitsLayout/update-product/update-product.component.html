@@ -1,0 +1,73 @@
+<main id="main" class="main">
+   <section class="section">
+      <div class="pagetitle">
+         <div class="d-flex justify-content-between">
+             <h1>Modifier un produit</h1>
+             <div class="d-flex justify-content-center">
+                 <button href="#" class="btn btn-outline-secondary rounded-pill m-1" [routerLink]="['/user']"><i class="bi bi-house-fill"></i>
+                  Home</button>
+                 <button href="#" class="btn btn-outline-secondary rounded-pill m-1" [routerLink]="['/user/produits']"><i class="bi bi-bag-fill"></i>
+                  Tous les produits</button>
+             </div>
+         </div>
+     </div>
+      <div class="row">
+         <div class="card">
+            <div class="card-body">
+               <img src={{p.image}} class="card-img-top" alt="...">
+               <form name="form" #form="ngForm">
+                  <div class="row mb-3">
+                     <label for="inputText" class="col-sm-2 col-form-label">Nom du produit</label>
+                     <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="p.name" name="name">
+                     </div>
+                  </div>
+                  <div class="row mb-3">
+                     <label for="inputText" class="col-sm-2 col-form-label">Description</label>
+                     <div class="col-sm-10">
+                        <input type="text" class="form-control" [(ngModel)]="p.description" name="description">
+                     </div>
+                  </div>
+                  <div class="row mb-3">
+                     <label for="inputText" class="col-sm-2 col-form-label">Quantité</label>
+                     <div class="col-sm-10">
+                        <input type="number" class="form-control" [(ngModel)]="p.quantity" name="quantity">
+                     </div>
+                  </div>
+                  <div class="row mb-3">
+                     <label for="inputText" class="col-sm-2 col-form-label">Prix</label>
+                     <div class="col-sm-10">
+                        <input type="number" class="form-control" [(ngModel)]="p.price" name="price">
+                     </div>
+                  </div>
+                  <div class="row mb-3">
+                     <div class="d-flex justify-content-center">
+                         <div class="mb-3">
+                             <label for="formFile" class="form-label">Choisir une image</label>
+                             <input class="form-control" type="file" id="formFile" accept="image/*"
+                                 #imageInput />
+                         </div>
+
+                     </div>
+
+                 </div>
+                  <div style="display: flex; justify-content: center">
+                     <button type="submit" class="btn btn-outline-primary rounded-pill m-1"
+                         (click)="save(p.id,imageInput)" [disabled]="loading">
+                         <div *ngIf="loading" class="spinner-border text-primary" role="status">
+                             <span class="visually-hidden">Loading...</span>
+                         </div>
+                         {{!loading ? 'Enregistrer' : null}}
+                     </button>
+                 </div>
+
+                  <div class="row mb-3">
+                     <div class="col-sm-10"></div>
+                  </div>
+               </form>
+            </div>
+         </div>
+
+      </div>
+   </section>
+</main>

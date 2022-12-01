@@ -1,0 +1,254 @@
+<main class="main" id="main">
+  <!-- Basic with Icons -->
+  <div class="col-xxl">
+    <div class="card mb-4">
+      <div class="card-header d-flex align-items-center justify-content-center">
+        <h5 class="mb-0">{{ action }} Un tutoriel</h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="formTournois" (ngSubmit)="onSubmit(ImageInput)">
+          <div class="row">
+            <div class="col">
+              <label for="largeSelect" class="form-label">Jeux</label>
+              <select id="largeSelect" name="game_id" class="form-select form-select-lg" formControlName="game_id"
+                [ngClass]="{
+                  'is-invalid':
+                    isFormSubmitted && TournoisControls['game_id'].errors
+                }">
+                <option *ngFor="let games of listGames" [ngValue]="games.id">
+                  {{ games.game_name }}
+                </option>
+              </select>
+              <div *ngIf="isFormSubmitted && TournoisControls['game_id'].errors" class="invalid-feedback">
+                <div *ngIf="TournoisControls['game_id'].errors['required']">
+                  Vous devez renseigner ce champ
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <label for="largeSelect2" class="form-label">TypeTournois</label>
+              <select id="largeSelect2" name="tournament_type_id" class="form-select form-select-lg"
+                formControlName="tournament_type_id" [ngClass]="{
+                  'is-invalid':
+                    isFormSubmitted &&
+                    TournoisControls['tournament_type_id'].errors
+                }">
+                <option *ngFor="let type of listTypeTournois" [ngValue]="type.id">
+                  {{ type.type }}
+                </option>
+              </select>
+              <div *ngIf="
+                  isFormSubmitted &&
+                  TournoisControls['tournament_type_id'].errors
+                " class="invalid-feedback">
+                <div *ngIf="
+                    TournoisControls['tournament_type_id'].errors['required']
+                  ">
+                  Vous devez renseigner ce champ
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="form-group">
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">nombre de
+                    participants</label>
+                  <div class="col-sm-10">
+                    <div class="input-group input-group-merge">
+                      <!-- <span id="basic-icon-default-fullname2" class="input-group-text"
+                ><i class="bx bx-user"></i
+              ></span> -->
+                      <input name="competitors_number" type="number" class="form-control"
+                        id="basic-icon-default-fullname" placeholder=" nombre de competiteurs......"
+                        formControlName="competitors_number" [ngClass]="{
+                          'is-invalid':
+                            isFormSubmitted &&
+                            TournoisControls['competitors_number'].errors
+                        }" />
+                      <div *ngIf="
+                          isFormSubmitted &&
+                          TournoisControls['competitors_number'].errors
+                        " class="invalid-feedback">
+                        <div *ngIf="
+                            TournoisControls['competitors_number'].errors[
+                              'required'
+                            ]
+                          ">
+                          Vous devez renseigner ce champ
+                        </div>
+                        <div *ngIf="
+                            TournoisControls['competitors_number'].errors['min']
+                          ">
+                          minimum 20 competiteurs
+                        </div>
+                        <div *ngIf="
+                            TournoisControls['competitors_number'].errors['max']
+                          ">
+                          maximum 50 competiteurs
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="form-group">
+                <div class="row mb-3">
+                  <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nom</label>
+                  <div class="col-sm-10">
+                    <div class="input-group input-group-merge">
+                      <!-- <span id="basic-icon-default-fullname2" class="input-group-text"
+                ><i class="bx bx-user"></i
+              ></span> -->
+                      <input name="name" type="text" class="form-control" id="basic-icon-default-fullname"
+                        placeholder=" entrer le nom de tournois......" formControlName="name" [ngClass]="{
+                          'is-invalid':
+                            isFormSubmitted && TournoisControls['name'].errors
+                        }" />
+                      <div *ngIf="
+                          isFormSubmitted && TournoisControls['name'].errors
+                        " class="invalid-feedback">
+                        <div *ngIf="TournoisControls['name'].errors['required']">
+                          Vous devez renseigner ce champ
+                        </div>
+                        <div *ngIf="TournoisControls['name'].errors['minLength']">
+                          minimum 10 caractères
+                        </div>
+                        <div *ngIf="TournoisControls['name'].errors['maxLength']">
+                          maximum 25 caractères
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Date de tournois</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <!-- <span id="basic-icon-default-fullname2" class="input-group-text"
+              ><i class="bx bx-user"></i
+            ></span> -->
+                  <input name="date" type="date" class="form-control" id="basic-icon-default-fullname"
+                    placeholder=" entrer le nom de tournois......" formControlName="date" [ngClass]="{
+                      'is-invalid':
+                        isFormSubmitted && TournoisControls['date'].errors
+                    }" />
+                  <div *ngIf="isFormSubmitted && TournoisControls['date'].errors" class="invalid-feedback">
+                    <div *ngIf="TournoisControls['date'].errors['required']">
+                      Vous devez renseigner ce champ
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Choisir une Image</label>
+            <input class="form-control" accept="image/*" type="file" id="formFile" #ImageInput
+              formControlName="image_tournois" [ngClass]="{
+                'is-invalid':
+                  isFormSubmitted && TournoisControls['image_tournois'].errors
+              }" />
+            <div *ngIf="
+                isFormSubmitted && TournoisControls['image_tournois'].errors
+              " class="invalid-feedback">
+              <div *ngIf="TournoisControls['image_tournois'].errors['required']">
+                Vous devez renseigner ce champ
+              </div>
+            </div>
+          </div>
+
+          <div class="card-header d-flex align-items-center justify-content-center">
+            <div>
+              <button class="btn btn-outline-warning mr-1">Annuler</button>
+              <button type="submit" *ngIf="!inEdit" class="btn btn-outline-primary" [disabled]="loading">
+                {{ loading ? "Chargement .." : "Enregistrer" }}
+              </button>
+              <button *ngIf="inEdit" (click)="updateTournois(ImageInput)" type="button" class="btn btn-outline-primary"
+                [disabled]="loading">
+                {{ loading ? "Chargement .." : "Enregistrer" }}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap Table with Header - Dark -->
+  <div class="card">
+    <div class="card-header d-flex align-items-center justify-content-center">
+      <h5>Liste des tutoriels</h5>
+    </div>
+
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th>Name</th>
+            <th>Date</th>
+            <th>Competitors</th>
+            <th>verified</th>
+            <th>Available</th>
+            <th>participators</th>
+            <th>Game Name</th>
+            <th>Tournament Type</th>
+            <th>User</th>
+            <th>Image</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0" *ngFor="let tourn of listTournois; let i = index">
+          <tr>
+            <td>{{ tourn.name }}</td>
+            <td>{{ tourn.date | date}}</td>
+            <td>{{ tourn.competitors_number }}</td>
+
+            <td>
+              <ng-container *ngIf="tourn.verified == 1; else inv1">
+                <span class="badge bg-label-success">Verifié</span>
+              </ng-container>
+              <ng-template #inv1>
+                <span class="badge bg-label-danger">Non Verifié</span>
+              </ng-template>
+            </td>
+            <td>
+              <ng-container *ngIf="tourn.available == 1; else inv">
+                <span class="badge bg-label-success">Available</span>
+              </ng-container>
+              <ng-template #inv>
+                <span class="badge bg-label-danger">Not Available</span>
+              </ng-template>
+            </td>
+
+            <td>{{ tourn.participators_number }}</td>
+            <td>{{ tourn.game_name }}</td>
+            <td>{{ tourn.type }}</td>
+            <td>{{ tourn.first_name + " " + tourn.last_name }}</td>
+            <td>
+              <img class="rounded-circle" src="{{ tourn.image_tournois }}" alt="" width="150" height="150" />
+            </td>
+
+            <td>
+              <button [routerLink]="['/admin/tournois/edit', tourn.id]" class="btn btn-outline-primary">
+                <i class="bx bx-edit-alt me-1">Edit</i>
+              </button>
+              <button (click)="delete(tourn.id)" class="btn btn-outline-danger">
+                <i class="bx bx-trash me-1">Delete</i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>

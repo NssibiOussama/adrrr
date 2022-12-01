@@ -1,0 +1,123 @@
+<main id="main" class="main">
+  <!-- Basic with Icons -->
+  <div class="col-xxl">
+    <div class="card mb-4">
+      <div class="card-header d-flex align-items-center justify-content-center">
+        <h5 class="mb-0">{{action}} Un tutoriel </h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="formTutoriels" (ngSubmit)="onSubmit(videoInput)">
+          <div class="row">
+            <div class="col">
+              <label for="largeSelect" class="form-label">Jeux</label>
+              <select id="largeSelect" name="game_id" class="form-select form-select-lg" formControlName="game_id"
+                [ngClass]="{ 'is-invalid': isFormSubmitted && tutorialsControls['game_id'].errors }">
+
+                <option *ngFor="let games of listGames" [ngValue]="games.id">{{games.game_name}}</option>
+
+              </select>
+              <div *ngIf="isFormSubmitted && tutorialsControls['game_id'].errors" class="invalid-feedback">
+                <div *ngIf="tutorialsControls['game_id'].errors['required']"> Vous devez renseigner ce champ</div>
+              </div>
+
+            </div>
+            <div class="col">
+              <div>
+                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="2"
+                  formControlName="description"
+                  [ngClass]="{ 'is-invalid': isFormSubmitted && tutorialsControls['description'].errors }"></textarea>
+                <div *ngIf="isFormSubmitted &&  tutorialsControls['description'].errors" class="invalid-feedback">
+                  <div *ngIf="tutorialsControls['description'].errors['required']">Vous devez renseigner ce champ
+                  </div>
+                  <div *ngIf="tutorialsControls['description'].errors['minlength']">La description doit être au moins
+                    de 6 caractères</div>
+                  <div *ngIf="tutorialsControls['description'].errors['maxlength']">La description ne doit pas
+                    comporter plus de 20 caractères</div>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Choisir un video</label>
+            <input class="form-control" accept="video/*" type="file" id="formFile" #videoInput formControlName="video"
+              [ngClass]="{ 'is-invalid': isFormSubmitted && tutorialsControls['video'].errors }" />
+            <div *ngIf="isFormSubmitted && tutorialsControls['video'].errors" class="invalid-feedback">
+              <div *ngIf="tutorialsControls['video'].errors['required']"> Vous devez renseigner ce champ</div>
+            </div>
+
+          </div>
+
+          <div class="card-header d-flex align-items-center justify-content-center">
+            <div>
+              <button style='margin-right:7px' class="btn btn-outline-warning mr-1" (click)="onReset()">Annuler</button>
+              <button style='margin-right:7px' type="submit" *ngIf="!inEdit" class="btn btn-outline-primary"
+                [disabled]="loading">
+                <div *ngIf="loading" class="spinner-border text-success" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                {{!loading ? 'Enregistrer' : null}}
+              </button>
+              <button style='margin-right:7px' *ngIf="inEdit" (click)="updateTutoriels(videoInput)" type="button"
+                class="btn btn-outline-primary" [disabled]="loading">
+                <div *ngIf="loading" class="spinner-border text-success" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+                {{!loading ? 'Enregistrer' : null}}
+              </button>
+
+            </div>
+
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
+  <!-- Bootstrap Table with Header - Dark -->
+  <div class="card">
+    <div class="card-header d-flex align-items-center justify-content-center">
+      <h5>Liste des tutoriels</h5>
+    </div>
+
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th>Video</th>
+            <th>Proprietaire</th>
+            <th>Jeux</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0" *ngFor="let tuto of listTutoriels; let i=index ">
+          <tr>
+            <td> <video class="rounded-circle" controls width="140" [height]="140">
+                <source src={{tuto.video}} type="video/webm">
+              </video> </td>
+            <td>{{tuto.first_name+" "+tuto.last_name}}</td>
+            <td>{{tuto.game_name}}</td>
+            <td>
+
+              <button style='margin-right:7px' [routerLink]="['/admin/tutoriels/edit',tuto.id]"
+                class="btn btn-outline-primary"><i class="bx bx-edit-alt me-1">Modifier</i> </button>
+              <button style='margin-right:7px' (click)="delete(tuto.id)" class="btn btn-outline-danger"><i
+                  class="bx bx-trash me-1">Supprimer</i>
+              </button>
+
+
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+</main>

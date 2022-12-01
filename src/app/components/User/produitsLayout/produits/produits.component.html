@@ -1,0 +1,66 @@
+<main id="main" class="main">
+    <div class="pagetitle">
+        <div style="display: flex; justify-content:space-between">
+            <h1>Produits</h1>
+            <button href="#" class="btn btn-outline-secondary rounded-pill" [routerLink]="['/user/produits/ajouter']"><i
+                    class="bi bi-plus-circle"></i>
+                Ajouter un produit</button>
+        </div>
+        <div class="nav-item d-flex align-items-center mt-2">
+            <i class="bx bx-search fs-4 lh-0"></i>
+            <input type="text" class="form-control border-0 shadow-none me-3" placeholder="Search..."
+                aria-label="Search..." (keyup)="searchProducts(searchText)" [(ngModel)]="searchText" />
+        </div>
+    </div>
+    <section class="section" *ngIf="mesproduits.length">
+        <h6>Mes produits</h6>
+        <div class="row align-items-top">
+            <div class="col-lg-3" *ngFor="let p of mesproduits">
+                <div class="card" style="border-radius: 20px;">
+                    <div class="card-body">
+                        <h5 class="card-title text-info text-center">{{p.name}}</h5>
+                        <img src={{p.image}} class="card-img-top " alt="...">
+                        <h5 class=" text-center">{{p.description}}</h5>
+                        <div style="display: flex; justify-content:space-around;">
+                            <p class=" text-center"> {{p.quantity > 0? "In stock" : "Out of stock"}}</p>
+                            <p class=" text-center">{{p.price}} TND</p>
+                        </div>
+                        <br>
+                        <div class="d-flex justify-content-evenly">
+                            <a href="#" class="btn rounded-pill btn-outline-info"
+                                [routerLink]="['/user/produits/modifier',p.id]"><i class="bi bi-pencil-square"></i></a>
+                            <a class="btn btn-outline-danger rounded-pill " (click)="deleteProduct(p.id)"><i
+                                    class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section">
+        <h6>Produits en vente</h6>
+        <div class="row align-items-top">
+            <div class="col-lg-3" *ngFor=" let p of produits ">
+                <div class="card" style="border-radius: 20px;">
+                    <div class="card-body " >
+                        <h5 class="card-title text-info text-center">{{p.name}}</h5>
+                        <img src={{p.image}} class="card-img-top" alt="...">
+                        <p class="text-center">{{p.description}}</p>
+                        <div style="display: flex; justify-content:space-around;">
+                            <p class="text-center"> {{p.quantity > 0? "In stock" : "Out of stock"}}</p>
+                            <p class="text-center">{{p.price}} TND</p>
+                        </div>
+                        <h4 class=" text-center">{{p.first_name+" "+p.last_name}}</h4>
+                        <br>
+                        <div class="d-flex justify-content-center">
+                            <a class="btn btn-outline-info rounded-pill" (click)="addToCart(p.id)"><i
+                                    class="bi bi-bag-plus-fill"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>

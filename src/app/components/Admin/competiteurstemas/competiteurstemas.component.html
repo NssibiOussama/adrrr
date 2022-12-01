@@ -1,0 +1,33 @@
+<main id="main" class="main" >
+    <!-- Bootstrap Table with Header - Dark -->
+    <div class="card">
+        <div class="card-header d-flex align-items-center justify-content-center">
+          <h5 >Liste des equipes de competiteurs</h5>
+        </div>
+
+        <div class="table-responsive text-nowrap">
+          <table class="table">
+            <thead class="table-dark">
+              <tr>
+                <th>Nom du tournoi</th>
+                <th>Equipe competiteur</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody class="table-border-bottom-0" *ngFor="let comp of listCompetitorsTeams">
+              <tr>
+                <td>{{comp.name}}</td>
+                <td>{{comp.team_name}}</td>
+                <td>
+                  <button class="btn btn-outline-danger" (click)="delete(comp.id)" ><i class="bx bx-trash me-1" >Delete</i> </button>
+                </td>
+                
+              </tr>
+
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+    
+</main>

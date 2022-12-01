@@ -1,0 +1,46 @@
+<main id="main" class="main" >
+
+  <!-- Bootstrap Table with Header - Dark -->
+  <div class="card">
+    <div class="card-header d-flex align-items-center justify-content-center">
+      <h5 >Liste des notification Tournois</h5>
+    </div>
+
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th>Nom du tournoi</th>
+            <th>Date </th>
+            <th>Proprietaire </th>
+            <th>Status </th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0" *ngFor="let notif of listNotification">
+          <tr>
+            <td>{{notif.name}}</td>
+            <td>{{notif.date | date}}</td>
+            <td>{{notif.first_name+" "+notif.last_name}}</td>
+            <td>
+              <ng-container *ngIf="notif.status == 1; else inv">
+                <span class="badge bg-label-success">Verifié</span>
+              </ng-container>
+              <ng-template #inv>
+                <span class="badge bg-label-danger">Non Verifié</span>
+              </ng-template>
+            </td>
+            <td>
+              <button class="btn btn-outline-danger" (click)="delete(notif.id)" ><i class="bx bx-trash me-1" >Delete</i> </button>
+              <button class="btn btn-outline-success" (click)="approuverNotification(notif.id,notif.tournois_id)" ><i class="bx bx-trash me-1" >Approuver</i> </button>
+            </td>
+
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</main>

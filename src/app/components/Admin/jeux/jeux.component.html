@@ -1,0 +1,128 @@
+<main id="main" class="main">
+    <!-- <link rel="stylesheet" > -->
+   
+    <!-- Basic with Icons -->
+    <div class="col-xxl">
+      <div class="card mb-4">
+        <div class="card-header d-flex align-items-center justify-content-center">
+          <h5 class="mb-0">{{action}} Un  jeux </h5>
+        </div>
+        <div class="card-body">
+          <form [formGroup]="formGames"  (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col">
+                <label for="largeSelect" class="form-label">Catégorie de jeux</label>
+                <select id="largeSelect" name="game_id" class="form-select form-select-lg" formControlName="categorie_id"
+                  [ngClass]="{ 'is-invalid': isFormSubmitted && GamesControls['categorie_id'].errors }" >
+                  
+                  <option *ngFor="let gamesCategories of categoriesList" [ngValue]="gamesCategories.id">{{gamesCategories.type}}</option>
+               
+                </select>
+                <div *ngIf="isFormSubmitted && GamesControls['categorie_id'].errors" class="invalid-feedback">
+                  <div *ngIf="GamesControls['categorie_id'].errors['required']"> Vous devez renseigner ce champ</div>
+                </div>
+  
+              </div>
+              <div class="col">
+                <div>
+                  <label for="exampleFormControlTextarea1" class="form-label">Description</label>
+                  <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="2"
+                    formControlName="description"
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && GamesControls['description'].errors }"></textarea>
+                  <div *ngIf="isFormSubmitted &&  GamesControls['description'].errors" class="invalid-feedback">
+                    <div *ngIf="GamesControls['description'].errors['required']">Vous devez renseigner ce champ
+                    </div>
+                    <div *ngIf="GamesControls['description'].errors['minlength']">La description doit être au moins
+                      de 6 caractères</div>
+                    <div *ngIf="GamesControls['description'].errors['maxlength']">La description ne doit pas
+                      comporter plus de 20 caractères</div>
+                  </div>
+                </div>
+  
+  
+              </div>
+            </div>
+            <div class="form-group">
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Nom</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <!-- <span id="basic-icon-default-fullname2" class="input-group-text"
+                    ><i class="bx bx-user"></i
+                  ></span> -->
+                  <input 
+                  name="game_name"
+                    type="text"
+                    class="form-control"
+                    id="basic-icon-default-fullname"
+                    placeholder="Catégorie de jeux......"
+                    formControlName="game_name"
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && GamesControls['game_name'].errors }"
+                  />
+                <div *ngIf="isFormSubmitted && GamesControls['game_name'].errors" class="invalid-feedback">
+                  <div *ngIf="GamesControls['game_name'].errors['required']"> Vous devez renseigner ce champ</div>
+                  <div *ngIf="GamesControls['game_name'].errors['minlength']">Le Nom doit être au moins de 5 caractères</div>
+                  <div *ngIf="GamesControls['game_name'].errors['maxlength']">Le Nom ne doit pas comporter plus de 15 caractères</div>
+                </div>
+              </div>
+  
+                </div>
+              </div>
+            </div>
+            <div class="card-header d-flex align-items-center justify-content-center">
+              <div >
+                <button (click)="onReset()" class="btn btn-outline-warning mr-1"  >Annuler</button> 
+                <button *ngIf ="!inEdit"  type="submit" class="btn btn-outline-primary">Ajouter</button>
+                <button  *ngIf ="inEdit" (click)="updateGame()"  type="button" class="btn btn-outline-primary">Modifier</button>
+                
+              </div>
+  
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  
+    <br><br>
+   
+  
+    
+                <!-- Bootstrap Table with Header - Dark -->
+                <div class="card">
+                  <div class="card-header d-flex align-items-center justify-content-center">
+                    <h5 >Liste des  des jeux</h5>
+                  </div>
+   
+                  <div class="table-responsive text-nowrap">
+                    <table class="table">
+                      <thead class="table-dark">
+                        <tr>
+                          <th>Nom</th>
+                          <th>Description</th>
+                          <th>Type</th>
+                          <th>Actions</th>
+                        </tr>
+                      </thead>
+                      <tbody class="table-border-bottom-0" *ngFor="let jeux of gameList">
+                        <tr>
+                          <td>{{jeux.game_name}}</td>
+                          <td>{{jeux.description}}</td>
+                          <td>{{jeux.type}}</td>
+                          <td>
+                            <button class="btn btn-outline-primary" [routerLink]="['/admin/jeux/edit',jeux.id]"><i class="bx bx-edit-alt me-1" >Edit</i> </button>
+                            <button class="btn btn-outline-danger" (click)="delete(jeux.id)" ><i class="bx bx-trash me-1" >Delete</i> </button>
+                          </td>
+                          
+                        </tr>
+  
+      
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+  
+  
+  
+    
+  
+  </main>

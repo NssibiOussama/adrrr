@@ -1,0 +1,272 @@
+<main id="main" class="main">
+   <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+         <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+         </ol>
+      </nav>
+   </div>
+   <section class="section dashboard">
+      <div class="row">
+         <div class="col-lg-8">
+            <div class="row">
+               <div class="col-xxl-4 col-md-6">
+                  <div class="card info-card sales-card">
+
+                     <div class="card-body">
+                        <h5 class="card-title">Tutoriels</h5>
+                        <div class="d-flex align-items-center">
+                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"><i
+                                 class='bx bxs-videos'></i></div>
+                           <div class="ps-3">
+                              <h6>{{nbTutorials}}</h6>
+                              <span class="text-success small pt-1 fw-bold">{{currentNbTuto}}%</span> <span
+                                 class="text-muted small pt-2 ps-1">Aujourd'hui</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xxl-4 col-md-6">
+                  <div class="card info-card revenue-card">
+
+                     <div class="card-body">
+                        <h5 class="card-title">Tournois</h5>
+                        <div class="d-flex align-items-center">
+                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class='bx bxs-trophy'></i></div>
+                           <div class="ps-3">
+                              <h6>{{nbTournaments}}</h6>
+                              <span class="text-success small pt-1 fw-bold">{{currentNbTournaments}}%</span> <span
+                                 class="text-muted small pt-2 ps-1">Aujourd'hui</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xxl-4 col-xl-12">
+                  <div class="card info-card customers-card">
+
+                     <div class="card-body">
+                        <h5 class="card-title">Produits</h5>
+                        <div class="d-flex align-items-center">
+                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"><i
+                                 class='bx bxs-cart'></i></div>
+                           <div class="ps-3">
+                              <h6>{{nbProducts}}</h6>
+                              <span class="text-danger small pt-1 fw-bold">{{currentNbProducts}}%</span> <span
+                                 class="text-muted small pt-2 ps-1">Aujourd'hui</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xxl-4 col-xl-12">
+                  <div class="card info-card customers-card">
+
+                     <div class="card-body">
+                        <h5 class="card-title">Jeux</h5>
+                        <div class="d-flex align-items-center">
+                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class='bx bxs-joystick'></i></div>
+                           <div class="ps-3">
+                              <h6>{{nbGames}}</h6>
+                              <span class="text-danger small pt-1 fw-bold">{{currentNbGames}}%</span> <span
+                                 class="text-muted small pt-2 ps-1">Aujourd'hui</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xxl-4 col-xl-12">
+                  <div class="card info-card customers-card">
+
+                     <div class="card-body">
+                        <h5 class="card-title">Equipes</h5>
+                        <div class="d-flex align-items-center">
+                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"><i class='bx bxs-group' ></i></div>
+                           <div class="ps-3">
+                              <h6>{{nbTeams}}</h6>
+                              <span class="text-danger small pt-1 fw-bold">{{currentNbTeams}}%</span> <span
+                                 class="text-muted small pt-2 ps-1">Aujourd'hui</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xxl-4 col-xl-12">
+                  <div class="card info-card customers-card">
+
+                     <div class="card-body">
+                        <h5 class="card-title">Commandes</h5>
+                        <div class="d-flex align-items-center">
+                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i
+                                 class='bx bxs-cart'></i></div>
+                           <div class="ps-3">
+                              <h6>{{nbOrders}}</h6>
+                              <span class="text-danger small pt-1 fw-bold">{{currentNbOrders}}%</span> <span
+                                 class="text-muted small pt-2 ps-1">Aujourd'hui</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xxl-4 col-xl-12">
+                  <div class="card info-card customers-card">
+
+                     <div class="card-body">
+                        <h5 class="card-title">Membres</h5>
+                        <div class="d-flex align-items-center">
+                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"><i class='bx bxs-user'></i></div>
+                           <div class="ps-3">
+                              <h6>{{nbUsers}}</h6>
+                              <span class="text-danger small pt-1 fw-bold">{{currentNbUsers}}%</span> <span
+                                 class="text-muted small pt-2 ps-1">Aujourd'hui</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-xxl-4 col-xl-12">
+                  <div class="card info-card customers-card">
+
+                     <div class="card-body">
+                        <h5 class="card-title">Réclamations</h5>
+                        <div class="d-flex align-items-center">
+                           <div class="card-icon rounded-circle d-flex align-items-center justify-content-center"> <i class='bx bxs-bell-ring'></i></div>
+                           <div class="ps-3">
+                              <h6>{{nbReports}}</h6>
+                              <span class="text-danger small pt-1 fw-bold">{{currentNbReports}}%</span> <span
+                                 class="text-muted small pt-2 ps-1">Aujourd'hui</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+
+               <div class="col-12">
+                  <div class="card recent-sales overflow-auto">
+                     <div class="card-body">
+                        <h5 class="card-title">Commandes </h5>
+                        <table class="table table-borderless datatable">
+                           <thead>
+                              <tr>
+                                 <th scope="col">#</th>
+                                 <th scope="col">DATE</th>
+                                 <th scope="col">ADRESSE</th>
+                                 <th scope="col">PRIX</th>
+                                 <th scope="col">DELIVREE</th>
+                              </tr>
+                           </thead>
+                           <tbody *ngFor="let order of orders;let  i=index ">
+                              <tr>
+                                 <th scope="row"><a href="#">#{{i}}</a></th>
+                                 <td>{{order.created_at|date}}</td>
+                                 <td><a href="#" class="text-primary">{{order.adresse}}</a></td>
+                                 <td>{{order.price}} TND</td>
+                                 <td><ng-container *ngIf="order.delivered==1 ; else inv">
+                                    <span class="badge bg-success">Oui</span>
+                                  </ng-container>
+                                  <ng-template #inv>
+                                    <span class="badge bg-danger">Non</span>
+                                  </ng-template></td>
+                              </tr>
+
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-12">
+                  <div class="card top-selling overflow-auto">
+                     <div class="card-body pb-0">
+                        <h5 class="card-title">Tournois <span>| Disponible</span></h5>
+                        <table class="table table-borderless">
+                           <thead>
+                              <tr>
+                                 <th scope="col">Affiche</th>
+                                 <th scope="col">Date</th>
+                                 <th scope="col">Nom</th>
+                                 <th scope="col">Nb Compétiteurs</th>
+                                 <th scope="col">Nb Participants</th>
+                              </tr>
+                           </thead>
+                           <tbody *ngFor="let tournois of listTournois">
+                              <tr>
+                                 <th scope="row"><a href="#"><img src={{tournois.image_tournois}} alt=""></a></th>
+                                 <td><a href="#" class="text-primary fw-bold">{{tournois.date|date}}</a></td>
+                                 <td>{{tournois.name}}</td>
+                                 <td class="fw-bold">{{tournois.competitors_number}}</td>
+                                 <td>{{tournois.participators_number}}</td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="col-lg-4">
+            <div class="card">
+               <div class="card-body">
+                  <h5 class="card-title">Notification Tournois<span>| Non Verifié</span></h5>
+                  <div class="activity" *ngFor="let notif of listNotification">
+
+                     <div class="activity-item d-flex">
+                        <div class="activite-label">{{notif.date|date}}  </div>
+                        <i class='bi bi-circle-fill activity-badge text-info align-self-start'></i>
+                        <div class="activity-content"> {{notif.name}} <br> <a 
+                              class="fw-bold text-dark">{{notif.first_name+" "+notif.last_name}}</a><br> </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+ 
+            <div class="card">
+               <div class="filter">
+                  <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
+                  <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
+                     <li class="dropdown-header text-start">
+                        <h6>Filter</h6>
+                     </li>
+                     <li><a class="dropdown-item" href="#">Today</a></li>
+                     <li><a class="dropdown-item" href="#">This Month</a></li>
+                     <li><a class="dropdown-item" href="#">This Year</a></li>
+                  </ul>
+               </div>
+               <div class="card-body pb-0">
+                  <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
+                  <div class="news">
+                     <div class="post-item clearfix">
+                        <img src="assets/img/news-1.jpg" alt="">
+                        <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
+                        <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
+                     </div>
+                     <div class="post-item clearfix">
+                        <img src="assets/img/news-2.jpg" alt="">
+                        <h4><a href="#">Quidem autem et impedit</a></h4>
+                        <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...</p>
+                     </div>
+                     <div class="post-item clearfix">
+                        <img src="assets/img/news-3.jpg" alt="">
+                        <h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
+                        <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
+                     </div>
+                     <div class="post-item clearfix">
+                        <img src="assets/img/news-4.jpg" alt="">
+                        <h4><a href="#">Laborum corporis quo dara net para</a></h4>
+                        <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
+                     </div>
+                     <div class="post-item clearfix">
+                        <img src="assets/img/news-5.jpg" alt="">
+                        <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
+                        <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+</main>

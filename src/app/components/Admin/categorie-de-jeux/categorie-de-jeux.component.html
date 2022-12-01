@@ -1,0 +1,86 @@
+<main id="main" class="main">
+  <!-- <link rel="stylesheet" > -->
+
+  <!-- Basic with Icons -->
+
+   <div class="col-xxl">
+    <div class="card mb-4">
+      <div class="card-header d-flex align-items-center justify-content-center">
+        <h5 class="mb-0">{{action}} Un catégorie de jeux </h5>
+      </div>
+      <div class="card-body">
+        <form [formGroup]="formCategories" (ngSubmit)="onSubmit()">
+          <div class="form-group">
+            <div class="row mb-3">
+              <label class="col-sm-2 col-form-label" for="basic-icon-default-fullname">Type</label>
+              <div class="col-sm-10">
+                <div class="input-group input-group-merge">
+                  <!-- <span id="basic-icon-default-fullname2" class="input-group-text"
+                  ><i class="bx bx-user"></i
+                ></span> -->
+                  <input name="type" type="text" class="form-control" id="basic-icon-default-fullname"
+                    placeholder="Catégorie de jeux......" formControlName="type"
+                    [ngClass]="{ 'is-invalid': isFormSubmitted && CategoriesControls['type'].errors }" />
+                  <div *ngIf="isFormSubmitted && CategoriesControls['type'].errors" class="invalid-feedback">
+                    <div *ngIf="CategoriesControls['type'].errors['required']"> Vous devez renseigner ce champ</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <div class="card-header d-flex align-items-center justify-content-center">
+            <div>
+              <button style='margin-right:7px' (click)="onReset()" class="btn btn-outline-warning mr-1">Annuler</button>
+              <button style='margin-right:7px' *ngIf="!inEdit" type="submit" class="btn btn-outline-primary">Ajouter</button>
+              <button style='margin-right:7px' *ngIf="inEdit" (click)="updateCategorie()" type="button"
+                class="btn btn-outline-primary">Modifier</button>
+
+            </div>
+
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <br><br>
+
+
+  <!-- Bootstrap Table with Header - Dark -->
+  <div class="card">
+    <div class="card-header d-flex align-items-center justify-content-center">
+      <h5>Liste des catégories des jeux</h5>
+    </div>
+
+    <div class="table-responsive text-nowrap">
+      <table class="table">
+        <thead class="table-dark">
+          <tr>
+            <th>TYPE</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0" *ngFor="let cat of listCategorie">
+          <tr>
+            <td>{{cat.type}}</td>
+            <td>
+              <button style='margin-right:7px' class="btn btn-outline-primary" [routerLink]="['/admin/categoriesdejeux/edit',cat.id]"><i
+                  class="bx bx-edit-alt me-1">Modifier</i> </button>
+              <button style='margin-right:7px' class="btn btn-outline-danger" (click)="delete(cat.id)"><i class="bx bx-trash me-1">Supprimer</i>
+              </button>
+            </td>
+
+          </tr>
+
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
+
+
+
+</main>

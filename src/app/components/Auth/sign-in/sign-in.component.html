@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+
+  <script src="../../../../assets/js/script.js" defer></script>
+
+  <title>Adrenaline</title>
+</head>
+
+<body>
+
+  <main>
+    <section class="login">
+
+      <div class="wrapper">
+        <img src="../../../../assets/images/adreanline.png" class="login__logo">
+
+        <h1 class="login__title">Créer vote compte!</h1>
+        <form name="form" #form="ngForm" (ngSubmit)="signup()">
+
+          <label class="login__label">
+            <span>Nom </span>
+            <input type="text" name="nom" #firstname="ngModel" [(ngModel)]="nom" class="input" minlength="3" required>
+            <div *ngIf="firstname.touched && firstname.invalid" class="alert alert-danger mt-1">
+              <div *ngIf="firstname.errors?.['required']">Nom obligatoire</div>
+              <div *ngIf="firstname.errors?.['minlength']">Longueur minimale est de 3 caractères</div>
+            </div>
+          </label>
+
+          <label class="login__label">
+            <span>Prenom</span>
+            <input type="text" name="username" class="input" name="prenom" #lastname="ngModel" [(ngModel)]="prenom" required minlength="3">
+            <div *ngIf="lastname.touched && lastname.invalid" class="alert alert-danger mt-1">
+              <div *ngIf="lastname.errors?.['required']">Prénom obligatoire</div>
+              <div *ngIf="lastname.errors?.['minlength']">Longueur minimale est de 3 caractères</div>
+            </div>
+          </label>
+
+          <label class="login__label">
+            <span>adresse Email</span>
+            <input type="email" name="email" class="input" name="email" #myemail="ngModel" [(ngModel)]="email" required pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+            <div *ngIf="myemail.touched && myemail.invalid" class="alert alert-danger mt-1">
+              <div *ngIf="myemail.errors?.['required']">Adresse obligatoire</div>
+              <div *ngIf="myemail.errors?.['pattern']">Adresse non valide</div>
+            </div>
+          </label>
+
+
+          <label class="login__label">
+            <span>Mot de passe</span>
+            <input type="password" name="password" class="input" #mypassword="ngModel" [(ngModel)]="password" minlength="8" required>
+            <div *ngIf="mypassword.touched && mypassword.invalid" class="alert alert-danger mt-1">
+              <div *ngIf="mypassword.errors?.['required']">Mot de passe obligatoire</div>
+              <div *ngIf="mypassword.errors?.['minlength']">Mot de passe doit contenir au moins 8 caractères</div>
+            </div>
+            
+          </label>
+
+          <label class="login__label">
+            <span>Confirmer mot de passe</span>
+            <input type="password" name="confirmpassword" class="input" #confirmMyPassword="ngModel" [(ngModel)]="confirmPassword" required>
+            <div *ngIf="confirmMyPassword.touched && confirmPassword != password" class="alert alert-danger mt-1">
+              Mots de passe ne sont pas identiques
+            </div>
+          </label>
+
+
+          <div class="wrapper">
+            <button type="submit" class="login__button" [disabled]="form.invalid || password!==confirmPassword" >
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path
+                  d="M438.6 278.6l-160 160C272.4 444.9 264.2 448 256 448s-16.38-3.125-22.62-9.375c-12.5-12.5-12.5-32.75 0-45.25L338.8 288H32C14.33 288 .0016 273.7 .0016 256S14.33 224 32 224h306.8l-105.4-105.4c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0l160 160C451.1 245.9 451.1 266.1 438.6 278.6z" />
+              </svg>
+            </button>
+          </div>
+        </form>
+
+
+
+        <div class="login__icons">
+          <button type="button" class="icons__button">
+            <img src="../../../../assets/images/facebook-icon.png" alt="facebok">
+          </button>
+
+          <button type="button" class="icons__button">
+            <img src="../../../../assets/images/google-icon.png" alt="facebok">
+          </button>
+
+          <button type="button" class="icons__button">
+            <img src="../../../../assets/images/apple-icon.png" alt="facebok">
+          </button>
+        </div>
+      </div>
+      <a routerLink="/login" routerLinkActive="router-link-active" class="login__link">Se connecter</a>
+
+    </section>
+
+    <section class="wallpaper"></section>
+  </main>
+
+</body>
+
+</html>

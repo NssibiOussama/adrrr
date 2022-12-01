@@ -1,0 +1,42 @@
+<main id="main" class="main">
+    <div class="card">
+        <div class="card-header d-flex align-items-center justify-content-center">
+            <h5>Liste des commandes</h5>
+        </div>
+
+        <div class="table-responsive text-nowrap">
+            <table class="table">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Nom complet</th>
+                        <th>Total(TND)</th>
+                        <th>Adresse</th>
+                        <th>Date</th>
+                        <th>Délivrée</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0" *ngFor="let order of orders">
+                    <tr>
+                        <td ><a [routerLink]="['/admin/membres/edit',order.user_id]">{{order.first_name+" "+order.last_name}}</a></td>
+                        <td>{{order.price}}</td>
+                        <td>{{order.adresse}}</td>
+                        <td>{{order.created_at | date }}</td>
+                        <td>{{order.delivered ? 'Oui' : 'Non'}}</td>
+                        <td>
+                            <button class="btn btn-outline-primary" (click)="confirm(order.id, order.delivered)">
+                                <i [className]="order.delivered? 'bi bi-x-circle-fill' : 'bi bi-check-square-fill' "></i>
+                                {{order.delivered ? "Annuler" : "Confirmer"}}
+                            </button>
+                            <button class="btn btn-outline-danger" (click)="delete(order.id)">
+                                <i class="bx bx-trash me-1">Supprimer</i>
+                             </button>
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</main>

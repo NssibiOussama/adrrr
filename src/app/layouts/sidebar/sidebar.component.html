@@ -1,0 +1,58 @@
+<aside id="sidebar" class="sidebar">
+   <ul class="sidebar-nav" id="sidebar-nav" *ngIf="this.role=='admin'">
+      <li class="nav-item"> <a class="nav-link " routerLink="/admin/dashboard"> <i class="bi bi-grid"></i>
+            <span>Dashboard</span> </a></li>
+      <li class="nav-item">
+         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse"
+            routerLink="/admin/categoriesdejeux"> <i class="bi bi-menu-button-wide"></i><span>Catégories de jeux</span> </a>
+      </li>
+      <li class="nav-item">
+         <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse"
+            routerLink="/admin/jeux"> <i class="bi bi-journal-text"></i><span>Jeux</span> </a>
+
+      </li>
+      <li class="nav-item">
+         <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" routerLink="/admin/tournois"> <i
+               class="bi bi-layout-text-window-reverse"></i><span>Tournois</span> </a>
+
+      </li>
+      <li class="nav-item">
+         <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" routerLink="/admin/tutoriels">
+            <i class="bi bi-bar-chart"></i><span>Tutoriels</span> </a>
+
+      </li>
+      <li class="nav-item">
+         <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" routerLink="/admin/membres"> <i
+               class="bi bi-gem"></i><span>Membres</span> </a>
+
+      </li>
+      <li class="nav-item"> <a class="nav-link collapsed" routerLink="/admin/produits"> <i class="bi bi-person"></i>
+            <span>Produits</span> </a></li>
+      <li class="nav-item"> <a class="nav-link collapsed" routerLink="/admin/reclamations"> <i
+               class="bi bi-question-circle"></i>
+            <span>Réclamations</span> </a></li>
+      <li class="nav-item"> <a class="nav-link collapsed" routerLink="/admin/commandes"> <i class="bi bi-card-list"></i>
+            <span>Commandes</span> </a></li>
+      <li class="nav-item"> <a class="nav-link collapsed" routerLink="/admin/notificationstournois"> <i
+               class="bi bi-envelope"></i>
+            <span>Notifications tournois</span> </a></li>
+      <li class="nav-item"> <a class="nav-link collapsed" routerLink="/admin/equipes"> <i
+               class="bi bi-box-arrow-in-right"></i> <span>Equipes</span> </a></li>
+               <li class="nav-item"> <a class="nav-link collapsed" routerLink="/admin/competiteurs"> <i
+                  class="bi bi-box-arrow-in-right"></i> <span>Competiteurs</span> </a></li>
+                  <li class="nav-item"> <a class="nav-link collapsed" routerLink="/admin/competiteursteams"> <i
+                        class="bi bi-box-arrow-in-right"></i> <span>Competiteurs Equipes</span> </a></li>
+   </ul>
+
+
+
+
+
+
+
+   <ul class="sidebar-nav" id="sidebar-nav" *ngIf="this.role=='user'">
+      <li class="nav-item"> <a class="nav-link " routerLink="/user/produits"> <i class="bi bi-card-list"></i>
+            <span>Produits</span> </a></li>
+      
+   </ul>
+</aside>

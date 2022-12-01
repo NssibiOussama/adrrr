@@ -1,0 +1,9 @@
+@import "./base/layout.css";
+@import "./base/reset.css";
+@import "./components/button.css";
+/* @import "./components/form.css"; */
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css");
+@import "./pages/browse.css";
+@import "./pages/details.css";
+@import "./pages/streams.css";
+@import "./pages/profile.css";
